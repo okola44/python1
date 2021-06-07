@@ -46,7 +46,7 @@ class BankAccount:
             return f"you cannot borrow a negative amount"
         elif self.loan>0:
             return f"you cannot borrow an amount of {amount}"
-        elif amount<0.1*self.balance:
+        elif amount>0.1*self.balance:
             return f" you do not qualify for the loan of ksh {amount}"
         else:
             loan=amount*1.05

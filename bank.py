@@ -14,12 +14,19 @@ class BankAccount:
     def show_balance(self):
         return f" Hello {self.name} your balance is {self.balance}"
     def deposit(self,amount):
+        try:
+            10+amount
+        except TypeError:
+            return f"the amount should be an integer"
+        
+
+
         if amount<=0:
             return f"you cannot deposit less than 0"
         else:
              self.balance+=amount
              now=datetime.now()
-             transaction={"amount":{amount},"time":now,"narration":"you have deposited"}#a dictionary with transaction details
+             transaction={"amount":amount,"time":now,"narration":"you have deposited"}#a dictionary with transaction details
              self.statement.append(transaction)#appending transactions in the empty list statements
         return self.show_balance()
 
@@ -32,6 +39,10 @@ class BankAccount:
             print(f"{date}:{narration} {amount}")
         return  
     def withdraw(self,amount):
+        try:
+            30-amount
+        except TypeError:
+            return f"amount should be an integer"
         if amount>self.balance:
             return f"your balance is {self.balance} you cannot withdraw{amount}"
         else:
@@ -42,6 +53,10 @@ class BankAccount:
         return self.show_balance()
 
     def borrow(self,amount):
+        try:
+            20+amount
+        except TypeError:
+            return f"amount should be in figures"
         if amount <0:
             return f"you cannot borrow a negative amount"
         elif self.loan>0:
@@ -58,6 +73,10 @@ class BankAccount:
             return f"your outstanding loan is ksh {self.loan}"
 
     def repay_loan(self,amount):
+        try:
+            20-amount
+        except TypeError:
+            return f"amount should be in figures"
         if amount<0:
             return "you cannot repay with a negative amount"
         elif amount<=self.loan:
@@ -72,6 +91,43 @@ class BankAccount:
             repay_transaction={"amount":amount,"time":now,"narration":"you have repaid your loan of ksh"}
             self.statement.append(repay_transaction)
             return f"you have fully repaid your loan and your excess of ksh {excess} has been deposited in your account,your balance is {self.balance} "
+    
+    def transfer(self,account,amount):
+        try:
+            20-amount
+        except TypeError:
+            return f"amount should be in figures"
+        fee=amount*0.05
+        total=amount+fee
+        if amount<0:
+            return f"you have cannot transfer a negative number"
+        elif total>self.balance:
+            return f"you do not have enough money to transfer ksh{amount} you need at least ksh{total}"
+        else:
+            self.balance-=total
+            account.deposit(amount)
+
+class mobile_moneyAccount(BankAccount):
+    def __init__(self, name, phonenumber,service_provider):
+        
+        BankAccount.__init__(name, phonenumber)
+        self.service_provider=service_provider
+        
+
+    def buy_airtime(self,amount):
+        try:
+            30*amount
+        except TypeError:
+            return f"amount must be in figures"
+        if amount<0:
+            return f"amount must be greaer than 0 and not a negateive figure"
+        elif self.balance<amount:
+            return f" dear customer,your balance is {self.balance} you cannot purchase airtime worth {amount} "
+        else:
+            self.balance-=amount
+            
+               
+
       
 
 

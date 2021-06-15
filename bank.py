@@ -110,7 +110,7 @@ class BankAccount:
 class mobile_moneyAccount(BankAccount):
     def __init__(self, name, phonenumber,service_provider):
         
-        BankAccount.__init__(name, phonenumber)
+        BankAccount.__init__(self,name, phonenumber)
         self.service_provider=service_provider
         
 

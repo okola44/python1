@@ -63,7 +63,10 @@ class Rectangle:
     def perimeter(self):
         print(2*(self.length+self.width))
 
-Rectangle(12,23)
+rectangle1=Rectangle(10,10)
+rectangle1.area()
+rectangle1.perimeter()
+
 
 
 

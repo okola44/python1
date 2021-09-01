@@ -11,8 +11,17 @@ divisible_by_three(10)
 
 def nested_list():
     x=[[1,2],[3,4],[5,6]]
+    p=[]
+    for a in range(len(x)):
+        for b in range (len(x[a])):
+            p.append(x[a][b])
+
+            #y=[num for sublist in x for num in sublist]
+            #x=[[1,2],[3,4],[2,4]]
+            #new_list=list(sum(x.[]))
+            #print(new_list)
     
-    print(x)
+    print(p)
 
 nested_list()
 
@@ -66,6 +75,8 @@ class Rectangle:
 rectangle1=Rectangle(10,10)
 rectangle1.area()
 rectangle1.perimeter()
+
+
 
 
 
